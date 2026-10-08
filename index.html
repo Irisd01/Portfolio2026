@@ -1,0 +1,2971 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Iris Dolci — Montatrice / Filmmaker</title>
+
+    <meta
+        name="description"
+        content="Iris Dolci — Montatrice / Filmmaker based in Bologna, Italy."
+    >
+
+    <style>
+
+        /* =====================================================
+           COLOR PALETTE
+        ===================================================== */
+
+        :root {
+
+            --background: #F3F0E9;
+            --text: #171719;
+
+            --secondary: #3F8585;
+            --turquoise: #4FA6A6;
+            --turquoise-light: #B8D8D8;
+
+            --line: #D1D9D8;
+            --muted: #77756F;
+            --image-background: #E4E0D8;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+        body {
+
+            background: var(--background);
+
+            color: var(--text);
+
+            font-family:
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            font-weight: 400;
+
+            line-height: 1.4;
+
+        }
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+        button {
+
+            font-family: inherit;
+
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        nav {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            padding: 24px 32px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            z-index: 100;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(243, 240, 233, 0.95),
+                    rgba(243, 240, 233, 0)
+                );
+
+        }
+
+        .nav-name {
+
+            font-size: 13px;
+
+            letter-spacing: 0.04em;
+
+            transition:
+                color 0.3s ease;
+
+        }
+
+        .nav-name:hover {
+
+            color: var(--secondary);
+
+        }
+
+        .nav-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 28px;
+
+        }
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 24px;
+
+        }
+
+        .nav-links a,
+        #language-toggle,
+        #language-toggle-en {
+
+            color: var(--secondary);
+
+            font-size: 12px;
+
+            letter-spacing: 0.04em;
+
+            opacity: 0.85;
+
+            transition:
+
+                color 0.3s ease,
+
+                opacity 0.3s ease;
+
+        }
+
+        .nav-links a:hover,
+        #language-toggle:hover,
+        #language-toggle-en:hover {
+
+            color: var(--turquoise);
+
+            opacity: 1;
+
+        }
+
+        #language-toggle,
+        #language-toggle-en {
+
+            background: none;
+
+            border: 1px solid transparent;
+
+            cursor: pointer;
+
+            padding: 5px 7px;
+
+            transition:
+
+                color 0.3s ease,
+
+                border-color 0.3s ease;
+
+        }
+
+        #language-toggle:hover,
+        #language-toggle-en:hover {
+
+            border-color: var(--turquoise);
+
+        }
+
+
+        /* =====================================================
+           MAIN PAGE
+        ===================================================== */
+
+        .main-page {
+
+            min-height: 100vh;
+
+            padding:
+                105px 32px
+                55px;
+
+            display: flex;
+
+            align-items: center;
+
+        }
+
+        .main-grid {
+
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.45fr)
+                minmax(330px, 0.55fr);
+
+            gap: 70px;
+
+            align-items: center;
+
+        }
+
+
+        /* =====================================================
+           PROJECTS
+        ===================================================== */
+
+        .projects-column {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            align-items: start;
+
+        }
+
+        .project {
+
+            display: block;
+
+            min-width: 0;
+
+        }
+
+        .project-image {
+
+            width: 100%;
+
+            aspect-ratio: 4 / 3;
+
+            background:
+                var(--image-background);
+
+            overflow: hidden;
+
+            position: relative;
+
+        }
+
+
+        /* =====================================================
+           VIDEO CONTAINER
+        ===================================================== */
+
+        .video-container {
+
+            width: 100%;
+
+            height: 100%;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                var(--image-background);
+
+        }
+
+        .video-container video {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            background:
+                var(--image-background);
+
+            cursor: pointer;
+
+        }
+
+
+        /* =====================================================
+           CUSTOM VIDEO CONTROLS
+        ===================================================== */
+
+        .video-controls {
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding:
+                12px 12px 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(23, 23, 25, 0.78),
+                    rgba(23, 23, 25, 0)
+                );
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transform:
+                translateY(4px);
+
+            transition:
+
+                opacity 0.25s ease,
+
+                transform 0.25s ease;
+
+        }
+
+        .video-container.controls-visible
+        .video-controls {
+
+            opacity: 1;
+
+            pointer-events: auto;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        /* =====================================================
+           PLAY / PAUSE BUTTON
+        ===================================================== */
+
+        .video-play {
+
+            flex: 0 0 auto;
+
+            width: 30px;
+
+            height: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 0;
+
+            background:
+                transparent;
+
+            color:
+                #F3F0E9;
+
+            cursor: pointer;
+
+            padding: 0;
+
+            font-size: 13px;
+
+            line-height: 1;
+
+            transition:
+
+                color 0.2s ease,
+
+                transform 0.2s ease;
+
+        }
+
+        .video-play:hover {
+
+            color:
+                var(--turquoise-light);
+
+            transform:
+                scale(1.1);
+
+        }
+
+
+        /* =====================================================
+           TIME
+        ===================================================== */
+
+        .video-time {
+
+            flex: 0 0 auto;
+
+            min-width: 72px;
+
+            color:
+                #F3F0E9;
+
+            font-size: 9px;
+
+            line-height: 1;
+
+            letter-spacing: 0.02em;
+
+            white-space: nowrap;
+
+            text-align: center;
+
+            font-variant-numeric:
+                tabular-nums;
+
+        }
+
+
+        /* =====================================================
+           PROGRESS BAR
+        ===================================================== */
+
+        .video-progress {
+
+            flex: 1;
+
+            height: 3px;
+
+            appearance: none;
+
+            -webkit-appearance: none;
+
+            border: 0;
+
+            padding: 0;
+
+            margin: 0;
+
+            background:
+                rgba(243, 240, 233, 0.35);
+
+            cursor: pointer;
+
+            outline: none;
+
+        }
+
+        .video-progress::-webkit-slider-thumb {
+
+            appearance: none;
+
+            -webkit-appearance: none;
+
+            width: 9px;
+
+            height: 9px;
+
+            border-radius: 50%;
+
+            background:
+                var(--turquoise);
+
+            cursor: pointer;
+
+        }
+
+        .video-progress::-moz-range-thumb {
+
+            width: 9px;
+
+            height: 9px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background:
+                var(--turquoise);
+
+            cursor: pointer;
+
+        }
+
+        .video-progress::-webkit-slider-runnable-track {
+
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    var(--turquoise) 0%,
+                    var(--turquoise) var(--progress, 0%),
+                    rgba(243, 240, 233, 0.35)
+                    var(--progress, 0%),
+                    rgba(243, 240, 233, 0.35) 100%
+                );
+
+        }
+
+        .video-progress::-moz-range-track {
+
+            height: 3px;
+
+            background:
+                rgba(243, 240, 233, 0.35);
+
+        }
+
+        .video-progress::-moz-range-progress {
+
+            height: 3px;
+
+            background:
+                var(--turquoise);
+
+        }
+
+
+        /* =====================================================
+           FULLSCREEN BUTTON
+        ===================================================== */
+
+        .video-fullscreen {
+
+            flex: 0 0 auto;
+
+            width: 30px;
+
+            height: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 0;
+
+            background:
+                transparent;
+
+            color:
+                #F3F0E9;
+
+            cursor: pointer;
+
+            padding: 0;
+
+            font-size: 17px;
+
+            line-height: 1;
+
+            transition:
+
+                color 0.2s ease,
+
+                transform 0.2s ease;
+
+        }
+
+        .video-fullscreen:hover {
+
+            color:
+                var(--turquoise-light);
+
+            transform:
+                scale(1.1);
+
+        }
+
+
+        /* =====================================================
+           CENTER PLAY BUTTON
+        ===================================================== */
+
+        .video-center-play {
+
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            width: 48px;
+
+            height: 48px;
+
+            transform:
+                translate(-50%, -50%);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 0;
+
+            background:
+                rgba(23, 23, 25, 0.68);
+
+            color:
+                #F3F0E9;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            line-height: 1;
+
+            opacity: 1;
+
+            transition:
+
+                opacity 0.25s ease,
+
+                background 0.2s ease,
+
+                transform 0.2s ease;
+
+        }
+
+        .video-center-play:hover {
+
+            background:
+                var(--turquoise);
+
+        }
+
+        .video-container.is-playing
+        .video-center-play {
+
+            opacity: 0;
+
+            pointer-events: none;
+
+        }
+
+
+        /* =====================================================
+           HIDE NATIVE VIDEO CONTROLS
+        ===================================================== */
+
+        .project-image video::-webkit-media-controls {
+
+            display: none !important;
+
+        }
+
+        .project-image video::-webkit-media-controls-enclosure {
+
+            display: none !important;
+
+        }
+
+        .project-image video::-webkit-media-controls-panel {
+
+            display: none !important;
+
+        }
+
+        .project-image video::-webkit-media-controls-play-button {
+
+            display: none !important;
+
+        }
+
+        .project-image video::-webkit-media-controls-timeline {
+
+            display: none !important;
+
+        }
+
+        .project-image video::-webkit-media-controls-current-time-display {
+
+            display: none !important;
+
+        }
+
+        .project-image video::-webkit-media-controls-time-remaining-display {
+
+            display: none !important;
+
+        }
+
+        .project-image video::-webkit-media-controls-mute-button {
+
+            display: none !important;
+
+        }
+
+        .project-image video::-webkit-media-controls-volume-slider {
+
+            display: none !important;
+
+        }
+
+        .project-image video::-webkit-media-controls-fullscreen-button {
+
+            display: none !important;
+
+        }
+
+
+        /* =====================================================
+           PROJECT IMAGES
+        ===================================================== */
+
+        .project-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            opacity: 0.95;
+
+            transition:
+
+                transform 0.7s
+                cubic-bezier(.2,.7,.2,1),
+
+                opacity 0.4s ease;
+
+        }
+
+        .project:hover
+        .project-image img {
+
+            transform:
+                scale(1.035);
+
+            opacity: 1;
+
+        }
+
+
+        /* =====================================================
+           PROJECT INFO
+        ===================================================== */
+
+        .project-info {
+
+            margin-top: 12px;
+
+        }
+
+        .project-title {
+
+            font-size: 16px;
+
+            line-height: 1.1;
+
+            letter-spacing: -0.02em;
+
+            transition:
+                color 0.3s ease;
+
+        }
+
+        .project:hover
+        .project-title {
+
+            color: var(--secondary);
+
+        }
+
+        .project-details {
+
+            margin-top: 5px;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            color: var(--muted);
+
+        }
+
+        .project-role {
+
+            margin-top: 5px;
+
+            font-size: 10px;
+
+            line-height: 1.3;
+
+            text-transform: uppercase;
+
+            color: var(--secondary);
+
+            font-weight: 700;
+
+        }
+
+
+        /* =====================================================
+           PRESENTATION
+        ===================================================== */
+
+        .intro-column {
+
+            width: 100%;
+
+            max-width: 390px;
+
+        }
+
+        .intro-name {
+
+            font-size:
+                clamp(55px, 5.2vw, 82px);
+
+            line-height: 0.82;
+
+            letter-spacing: -0.065em;
+
+            font-weight: 400;
+
+            margin-bottom: 38px;
+
+        }
+
+        .about-text {
+
+            max-width: 390px;
+
+            font-size: 13px;
+
+            line-height: 1.55;
+
+            color: var(--muted);
+
+        }
+
+        .about-heading {
+
+            margin-bottom: 12px;
+
+            font-size: 20px;
+
+            line-height: 1.2;
+
+            color: var(--turquoise);
+
+            font-weight: 600;
+
+            letter-spacing: -0.02em;
+
+        }
+
+        .about-text p {
+
+            margin-bottom: 24px;
+
+        }
+
+        .filmography {
+
+            margin-top: 34px;
+
+        }
+
+
+        /* =====================================================
+           FILMOGRAPHY
+        ===================================================== */
+
+        .filmography p {
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+        }
+
+        .filmography strong {
+
+            color: var(--text);
+
+            font-weight: 600;
+
+        }
+
+
+        /* =====================================================
+           KORELAB LINK
+        ===================================================== */
+
+       .korelab-link {
+
+    color: var(--turquoise);
+
+    border-bottom:
+        1px solid transparent;
+
+    transition:
+
+        color 0.3s ease,
+
+        border-color 0.3s ease;
+
+}
+
+.korelab-link:hover {
+
+    color: var(--secondary);
+
+    border-color: var(--secondary);
+
+}
+
+
+        /* =====================================================
+           CONTACT
+        ===================================================== */
+
+        .contact {
+
+            min-height: 85vh;
+
+            padding:
+                120px 32px
+                40px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            border-top:
+                1px solid var(--line);
+
+        }
+
+        .section-title {
+
+            font-size: 18px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.08em;
+
+            color: var(--turquoise);
+
+            font-weight: 600;
+
+        }
+
+        .section-title::after {
+
+            content: "";
+
+            display: inline-block;
+
+            width: 22px;
+
+            height: 1px;
+
+            background: var(--turquoise);
+
+            margin-left: 10px;
+
+            vertical-align: middle;
+
+        }
+
+        .contact-title {
+
+            font-size:
+                clamp(48px, 8vw, 120px);
+
+            line-height: 0.78;
+
+            letter-spacing: -0.075em;
+
+            font-weight: 400;
+
+        }
+
+        .email {
+
+            display: inline-block;
+
+            margin-top: 45px;
+
+            font-size:
+                clamp(25px, 4vw, 55px);
+
+            letter-spacing: -0.04em;
+
+            border-bottom:
+                1px solid var(--secondary);
+
+            padding-bottom: 5px;
+
+            transition:
+
+                color 0.3s ease,
+
+                border-color 0.3s ease;
+
+        }
+
+        .email:hover {
+
+            color: var(--secondary);
+
+            border-color:
+                var(--turquoise);
+
+        }
+
+        .footer {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            font-size: 11px;
+
+            color: var(--muted);
+
+        }
+
+
+        /* =====================================================
+           ENGLISH VERSION
+        ===================================================== */
+
+        #english-version {
+
+            display: none;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .main-page {
+
+                padding:
+                    105px 25px
+                    70px;
+
+                display: block;
+
+            }
+
+            .main-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 70px;
+
+            }
+
+            .intro-column {
+
+                max-width: 600px;
+
+            }
+
+            .projects-column {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            nav {
+
+                padding: 20px;
+
+            }
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+            .nav-right {
+
+                gap: 0;
+
+            }
+
+            .main-page {
+
+                padding:
+                    100px 20px
+                    80px;
+
+            }
+
+            .main-grid {
+
+                display: flex;
+
+                flex-direction: column;
+
+                gap: 60px;
+
+            }
+
+            .intro-column {
+
+                order: -1;
+
+            }
+
+            .intro-name {
+
+                font-size:
+                    clamp(
+                        55px,
+                        18vw,
+                        100px
+                    );
+
+                margin-bottom: 35px;
+
+            }
+
+            .projects-column {
+
+                width: 100%;
+
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+
+            }
+
+            .project-image {
+
+                aspect-ratio: 16 / 10;
+
+            }
+
+            .project-title {
+
+                font-size: 17px;
+
+            }
+
+            .project-role {
+
+                margin-top: 7px;
+
+            }
+
+            .contact {
+
+                min-height: 75vh;
+
+                padding:
+                    100px 20px
+                    30px;
+
+            }
+
+            .contact-title {
+
+                font-size:
+                    clamp(
+                        48px,
+                        14vw,
+                        85px
+                    );
+
+            }
+
+            .email {
+
+                font-size:
+                    25px;
+
+                word-break:
+                    break-word;
+
+            }
+
+            .footer {
+
+                display: block;
+
+            }
+
+            .footer span {
+
+                display: block;
+
+                margin-bottom: 8px;
+
+            }
+
+            .filmography p {
+
+                font-size: 11px;
+
+                line-height: 1.55;
+
+            }
+
+            .video-controls {
+
+                padding:
+                    10px 9px 8px;
+
+                gap: 6px;
+
+            }
+
+            .video-time {
+
+                min-width: 68px;
+
+                font-size: 8px;
+
+            }
+
+            .video-play,
+            .video-fullscreen {
+
+                width: 28px;
+
+                height: 28px;
+
+            }
+
+            .video-center-play {
+
+                width: 44px;
+
+                height: 44px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     VERSIONE ITALIANA
+========================================================= -->
+
+<div id="italian-version">
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ===================================================== -->
+
+    <nav>
+
+        <a
+            href="#home"
+            class="nav-name"
+        >
+            IRIS DOLCI
+        </a>
+
+        <div class="nav-right">
+
+            <div class="nav-links">
+
+                <a href="#work">
+                    Progetti
+                </a>
+
+                <a href="#contact">
+                    Contatti
+                </a>
+
+            </div>
+
+            <button
+                id="language-toggle"
+                aria-label="Switch to English"
+            >
+                EN
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <main
+        class="main-page"
+        id="home"
+    >
+
+        <div class="main-grid">
+
+
+            <div
+                class="projects-column"
+                id="work"
+            >
+
+
+                <div class="project">
+
+                    <div class="project-image">
+
+                        <div class="video-container">
+
+                            <video
+                                preload="metadata"
+                                poster="images/argentovivo.png"
+                            >
+
+                                <source
+                                    src="video/Argentovivo_720p_H264_5Mb.mp4"
+                                    type="video/mp4"
+                                >
+
+                                Il tuo browser non supporta
+                                la riproduzione video.
+
+                            </video>
+
+
+                            <button
+                                class="video-center-play"
+                                type="button"
+                                aria-label="Riproduci video"
+                            >
+                                ▶
+                            </button>
+
+
+                            <div class="video-controls">
+
+                                <button
+                                    class="video-play"
+                                    type="button"
+                                    aria-label="Riproduci video"
+                                >
+                                    ▶
+                                </button>
+
+
+                                <div class="video-time">
+
+                                    <span class="current-time">
+                                        0:00
+                                    </span>
+
+                                    /
+
+                                    <span class="duration">
+                                        0:00
+                                    </span>
+
+                                </div>
+
+
+                                <input
+                                    class="video-progress"
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                    step="0.1"
+                                    aria-label="Avanzamento video"
+                                >
+
+
+                                <button
+                                    class="video-fullscreen"
+                                    type="button"
+                                    aria-label="Schermo intero"
+                                >
+                                    ⛶
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="project-info">
+
+                        <div class="project-title">
+                            Argentovivo
+                        </div>
+
+                        <div class="project-details">
+                            2023 · Cortometraggio
+                        </div>
+
+                        <div class="project-role">
+                            Regia / Sceneggiatura / Montaggio
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project">
+
+                    <div class="project-image">
+
+                        <div class="video-container">
+
+                            <video
+                                preload="metadata"
+                                poster="images/fame.png"
+                            >
+
+                                <source
+                                    src="video/Fame_720p_H264_5Mb.mp4"
+                                    type="video/mp4"
+                                >
+
+                                Il tuo browser non supporta
+                                la riproduzione video.
+
+                            </video>
+
+
+                            <button
+                                class="video-center-play"
+                                type="button"
+                                aria-label="Riproduci video"
+                            >
+                                ▶
+                            </button>
+
+
+                            <div class="video-controls">
+
+                                <button
+                                    class="video-play"
+                                    type="button"
+                                    aria-label="Riproduci video"
+                                >
+                                    ▶
+                                </button>
+
+
+                                <div class="video-time">
+
+                                    <span class="current-time">
+                                        0:00
+                                    </span>
+
+                                    /
+
+                                    <span class="duration">
+                                        0:00
+                                    </span>
+
+                                </div>
+
+
+                                <input
+                                    class="video-progress"
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                    step="0.1"
+                                    aria-label="Avanzamento video"
+                                >
+
+
+                                <button
+                                    class="video-fullscreen"
+                                    type="button"
+                                    aria-label="Schermo intero"
+                                >
+                                    ⛶
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="project-info">
+
+                        <div class="project-title">
+                            Fame
+                        </div>
+
+                        <div class="project-details">
+                            2026 · Cortometraggio
+                        </div>
+
+                        <div class="project-role">
+                            Montaggio
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project">
+
+                    <div class="project-image">
+
+                        <div class="video-container">
+
+                            <video
+                                preload="metadata"
+                                poster="images/dedica-breve.png"
+                            >
+
+                                <source
+                                    src="video/DedicaBreve_720p_H264_5Mb.mp4"
+                                    type="video/mp4"
+                                >
+
+                                Il tuo browser non supporta
+                                la riproduzione video.
+
+                            </video>
+
+
+                            <button
+                                class="video-center-play"
+                                type="button"
+                                aria-label="Riproduci video"
+                            >
+                                ▶
+                            </button>
+
+
+                            <div class="video-controls">
+
+                                <button
+                                    class="video-play"
+                                    type="button"
+                                    aria-label="Riproduci video"
+                                >
+                                    ▶
+                                </button>
+
+
+                                <div class="video-time">
+
+                                    <span class="current-time">
+                                        0:00
+                                    </span>
+
+                                    /
+
+                                    <span class="duration">
+                                        0:00
+                                    </span>
+
+                                </div>
+
+
+                                <input
+                                    class="video-progress"
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                    step="0.1"
+                                    aria-label="Avanzamento video"
+                                >
+
+
+                                <button
+                                    class="video-fullscreen"
+                                    type="button"
+                                    aria-label="Schermo intero"
+                                >
+                                    ⛶
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="project-info">
+
+                        <div class="project-title">
+                            Dedica breve
+                        </div>
+
+                        <div class="project-details">
+                            2026 · Cortometraggio
+                        </div>
+
+                        <div class="project-role">
+                            Montaggio
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <aside class="intro-column">
+
+
+                <h1 class="intro-name">
+
+                    IRIS<br>
+                    DOLCI
+
+                </h1>
+
+
+                <div class="about-text">
+
+
+                    <div class="about-heading">
+                        Mi presento
+                    </div>
+
+
+                    <p>
+
+                        Vivo e lavoro a Bologna. Ho esperienza
+                        come assistente al montaggio, montatrice,
+                        colorist, qc e mastering.
+
+                        <br><br>
+
+                        Dal 2022 faccio parte del collettivo
+                        Silly Monkeys, per cui curo la
+                        postproduzione dei nostri lavori.
+
+                        <br><br>
+
+                        Dal 2024 lavoro presso
+
+                        <a
+                            href="https://www.korelab.xyz/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="korelab-link"
+                        >
+                            KoreLab Srl
+                        </a>,
+
+                        per cui svolgo mansioni di assistente
+                        al montaggio e alla postproduzione,
+                        deliveries e qc, collaborando con
+                        produzioni nazionali e internazionali.
+
+                    </p>
+
+
+                    <div class="filmography">
+
+                        <div class="about-heading">
+                            Filmografia breve
+                        </div>
+
+
+                        <p>
+
+                            <strong>
+                                UNA STORIA D’AMORE
+                            </strong><br>
+
+                            di Iris Dolci · regia e montaggio · 2026
+
+
+                            <br><br>
+
+
+                            <strong>
+                                DEDICA BREVE
+                            </strong><br>
+
+                            di Alessandro Cuomo · montaggio · 2026
+
+
+                            <br><br>
+
+
+                            <strong>
+                                FAME
+                            </strong><br>
+
+                            di Fabio Pezzulla · montaggio · 2026
+
+
+                            <br><br>
+
+
+                            <strong>
+                                TUTTO QUELLO CHE SAPPIAMO SULLA BARCA
+                            </strong><br>
+
+                            di Federico Carillo · montaggio · 2025<br>
+
+                            Premio del pubblico ·
+                            50h in Barca 2025
+
+
+                            <br><br>
+
+
+                            <strong>
+                                FINCHÉ GIOCHIAMO
+                            </strong><br>
+
+                            di Alessandro Cuomo · montaggio · 2025<br>
+
+                            3° classificato ·
+                            4 Giorni Corti Nonantola 2025
+
+
+                            <br><br>
+
+
+                            <strong>
+                                IL VIZIO
+                            </strong><br>
+
+                            di Mario Pio Adamo · montaggio · 2024<br>
+
+                            Miglior soggetto ·
+                            50h in Barca 2024
+
+
+                            <br><br>
+
+
+                            <strong>
+                                ARGENTOVIVO
+                            </strong><br>
+
+                            di Iris Dolci ed Emma Marinoni ·
+                            regia e montaggio · 2023
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </aside>
+
+
+        </div>
+
+    </main>
+
+
+    <section
+        class="contact"
+        id="contact"
+    >
+
+        <div class="section-title">
+            Contatti
+        </div>
+
+
+        <div>
+
+            <h2 class="contact-title">
+
+                COLLABORIAMO
+
+            </h2>
+
+
+            <a
+                href="mailto:irisd01@ik.me"
+                class="email"
+            >
+
+                irisd01@ik.me
+
+            </a>
+
+        </div>
+
+
+        <div class="footer">
+
+            <span>
+                © 2026 Iris Dolci
+            </span>
+
+            <span>
+                Bologna, Italia
+            </span>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<!-- =========================================================
+     VERSIONE INGLESE
+========================================================= -->
+
+<div id="english-version">
+
+
+    <nav>
+
+        <a
+            href="#english-home"
+            class="nav-name"
+        >
+            IRIS DOLCI
+        </a>
+
+
+        <div class="nav-right">
+
+            <div class="nav-links">
+
+                <a href="#english-work">
+                    Work
+                </a>
+
+                <a href="#english-contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <button
+                id="language-toggle-en"
+                aria-label="Switch to Italian"
+            >
+                IT
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <main
+        class="main-page"
+        id="english-home"
+    >
+
+        <div class="main-grid">
+
+
+            <div
+                class="projects-column"
+                id="english-work"
+            >
+
+
+                <div class="project">
+
+                    <div class="project-image">
+
+                        <div class="video-container">
+
+                            <video
+                                preload="metadata"
+                                poster="images/argentovivo.png"
+                            >
+
+                                <source
+                                    src="video/Argentovivo_720p_H264_5Mb.mp4"
+                                    type="video/mp4"
+                                >
+
+                                Your browser does not support
+                                video playback.
+
+                            </video>
+
+
+                            <button
+                                class="video-center-play"
+                                type="button"
+                                aria-label="Play video"
+                            >
+                                ▶
+                            </button>
+
+
+                            <div class="video-controls">
+
+                                <button
+                                    class="video-play"
+                                    type="button"
+                                    aria-label="Play video"
+                                >
+                                    ▶
+                                </button>
+
+
+                                <div class="video-time">
+
+                                    <span class="current-time">
+                                        0:00
+                                    </span>
+
+                                    /
+
+                                    <span class="duration">
+                                        0:00
+                                    </span>
+
+                                </div>
+
+
+                                <input
+                                    class="video-progress"
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                    step="0.1"
+                                    aria-label="Video progress"
+                                >
+
+
+                                <button
+                                    class="video-fullscreen"
+                                    type="button"
+                                    aria-label="Fullscreen"
+                                >
+                                    ⛶
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="project-info">
+
+                        <div class="project-title">
+                            Argentovivo
+                        </div>
+
+                        <div class="project-details">
+                            2023 · Short Film
+                        </div>
+
+                        <div class="project-role">
+                            Direction / Screenwriting / Editing
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project">
+
+                    <div class="project-image">
+
+                        <div class="video-container">
+
+                            <video
+                                preload="metadata"
+                                poster="images/fame.png"
+                            >
+
+                                <source
+                                    src="video/Fame_720p_H264_5Mb.mp4"
+                                    type="video/mp4"
+                                >
+
+                                Your browser does not support
+                                video playback.
+
+                            </video>
+
+
+                            <button
+                                class="video-center-play"
+                                type="button"
+                                aria-label="Play video"
+                            >
+                                ▶
+                            </button>
+
+
+                            <div class="video-controls">
+
+                                <button
+                                    class="video-play"
+                                    type="button"
+                                    aria-label="Play video"
+                                >
+                                    ▶
+                                </button>
+
+
+                                <div class="video-time">
+
+                                    <span class="current-time">
+                                        0:00
+                                    </span>
+
+                                    /
+
+                                    <span class="duration">
+                                        0:00
+                                    </span>
+
+                                </div>
+
+
+                                <input
+                                    class="video-progress"
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                    step="0.1"
+                                    aria-label="Video progress"
+                                >
+
+
+                                <button
+                                    class="video-fullscreen"
+                                    type="button"
+                                    aria-label="Fullscreen"
+                                >
+                                    ⛶
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="project-info">
+
+                        <div class="project-title">
+                            Fame
+                        </div>
+
+                        <div class="project-details">
+                            2026 · Short Film
+                        </div>
+
+                        <div class="project-role">
+                            Editing
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project">
+
+                    <div class="project-image">
+
+                        <div class="video-container">
+
+                            <video
+                                preload="metadata"
+                                poster="images/dedica-breve.png"
+                            >
+
+                                <source
+                                    src="video/DedicaBreve_720p_H264_5Mb.mp4"
+                                    type="video/mp4"
+                                >
+
+                                Your browser does not support
+                                video playback.
+
+                            </video>
+
+
+                            <button
+                                class="video-center-play"
+                                type="button"
+                                aria-label="Play video"
+                            >
+                                ▶
+                            </button>
+
+
+                            <div class="video-controls">
+
+                                <button
+                                    class="video-play"
+                                    type="button"
+                                    aria-label="Play video"
+                                >
+                                    ▶
+                                </button>
+
+
+                                <div class="video-time">
+
+                                    <span class="current-time">
+                                        0:00
+                                    </span>
+
+                                    /
+
+                                    <span class="duration">
+                                        0:00
+                                    </span>
+
+                                </div>
+
+
+                                <input
+                                    class="video-progress"
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                    step="0.1"
+                                    aria-label="Video progress"
+                                >
+
+
+                                <button
+                                    class="video-fullscreen"
+                                    type="button"
+                                    aria-label="Fullscreen"
+                                >
+                                    ⛶
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="project-info">
+
+                        <div class="project-title">
+                            Dedica breve
+                        </div>
+
+                        <div class="project-details">
+                            2026 · Short Film
+                        </div>
+
+                        <div class="project-role">
+                            Editing
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <aside class="intro-column">
+
+
+                <h1 class="intro-name">
+
+                    IRIS<br>
+                    DOLCI
+
+                </h1>
+
+
+                <div class="about-text">
+
+
+                    <div class="about-heading">
+                        About me
+                    </div>
+
+
+                    <p>
+
+                        I live and work in Bologna. I have
+                        experience as an assistant editor,
+                        editor, colorist, QC and mastering.
+
+                        <br><br>
+
+                        Since 2022 I have been part of the
+                        Silly Monkeys collective, where I take
+                        care of post-production for our work.
+
+                        <br><br>
+
+                        Since 2024 I have been working at
+
+                        <a
+                            href="https://www.korelab.xyz/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="korelab-link"
+                        >
+                            KoreLab Srl
+                        </a>,
+
+                        where I work as an assistant editor
+                        and post-production assistant, handling
+                        deliveries and QC, collaborating with
+                        national and international productions.
+
+                    </p>
+
+
+                    <div class="filmography">
+
+                        <div class="about-heading">
+                            Short filmography
+                        </div>
+
+
+                        <p>
+
+                            <strong>
+                                UNA STORIA D’AMORE
+                            </strong><br>
+
+                            by Iris Dolci ·
+                            direction and editing · 2026
+
+
+                            <br><br>
+
+
+                            <strong>
+                                DEDICA BREVE
+                            </strong><br>
+
+                            by Alessandro Cuomo ·
+                            editing · 2026
+
+
+                            <br><br>
+
+
+                            <strong>
+                                FAME
+                            </strong><br>
+
+                            by Fabio Pezzulla ·
+                            editing · 2026
+
+
+                            <br><br>
+
+
+                            <strong>
+                                TUTTO QUELLO CHE SAPPIAMO SULLA BARCA
+                            </strong><br>
+
+                            by Federico Carillo ·
+                            editing · 2025<br>
+
+                            Audience Award ·
+                            50h in Barca 2025
+
+
+                            <br><br>
+
+
+                            <strong>
+                                FINCHÉ GIOCHIAMO
+                            </strong><br>
+
+                            by Alessandro Cuomo ·
+                            editing · 2025<br>
+
+                            3rd place ·
+                            4 Giorni Corti Nonantola 2025
+
+
+                            <br><br>
+
+
+                            <strong>
+                                IL VIZIO
+                            </strong><br>
+
+                            by Mario Pio Adamo ·
+                            editing · 2024<br>
+
+                            Best Screenplay Idea ·
+                            50h in Barca 2024
+
+
+                            <br><br>
+
+
+                            <strong>
+                                ARGENTOVIVO
+                            </strong><br>
+
+                            by Iris Dolci and Emma Marinoni ·
+                            direction and editing · 2023
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </aside>
+
+
+        </div>
+
+    </main>
+
+
+    <section
+        class="contact"
+        id="english-contact"
+    >
+
+        <div class="section-title">
+            Contact
+        </div>
+
+
+        <div>
+
+            <h2 class="contact-title">
+
+               LET'S WORK<br>
+                TOGETHER
+
+            </h2>
+
+
+            <a
+                href="mailto:irisd01@ik.me"
+                class="email"
+            >
+
+                irisd01@ik.me
+
+            </a>
+
+        </div>
+
+
+        <div class="footer">
+
+            <span>
+                © 2026 Iris Dolci
+            </span>
+
+            <span>
+                Bologna, Italy
+            </span>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<!-- =========================================================
+     LANGUAGE + VIDEO SCRIPT
+========================================================= -->
+
+<script>
+
+    /* =====================================================
+       LANGUAGE SWITCH
+    ===================================================== */
+
+    const italian =
+        document.getElementById(
+            "italian-version"
+        );
+
+
+    const english =
+        document.getElementById(
+            "english-version"
+        );
+
+
+    const toggleIT =
+        document.getElementById(
+            "language-toggle"
+        );
+
+
+    const toggleEN =
+        document.getElementById(
+            "language-toggle-en"
+        );
+
+
+    function showEnglish() {
+
+        italian.style.display = "none";
+
+        english.style.display = "block";
+
+        window.scrollTo(0, 0);
+
+        document.documentElement.lang = "en";
+
+    }
+
+
+    function showItalian() {
+
+        english.style.display = "none";
+
+        italian.style.display = "block";
+
+        window.scrollTo(0, 0);
+
+        document.documentElement.lang = "it";
+
+    }
+
+
+    toggleIT.addEventListener(
+        "click",
+        showEnglish
+    );
+
+
+    toggleEN.addEventListener(
+        "click",
+        showItalian
+    );
+
+
+    /* =====================================================
+       CUSTOM VIDEO PLAYER
+    ===================================================== */
+
+    document
+        .querySelectorAll(".video-container")
+        .forEach(function(container) {
+
+            const video =
+                container.querySelector("video");
+
+            const centerPlay =
+                container.querySelector(
+                    ".video-center-play"
+                );
+
+            const playButton =
+                container.querySelector(
+                    ".video-play"
+                );
+
+            const fullscreenButton =
+                container.querySelector(
+                    ".video-fullscreen"
+                );
+
+            const progress =
+                container.querySelector(
+                    ".video-progress"
+                );
+
+            const currentTime =
+                container.querySelector(
+                    ".current-time"
+                );
+
+            const duration =
+                container.querySelector(
+                    ".duration"
+                );
+
+
+            let hideControlsTimer;
+
+
+            function formatTime(seconds) {
+
+                if (
+                    !Number.isFinite(seconds)
+                ) {
+
+                    return "0:00";
+
+                }
+
+
+                const minutes =
+                    Math.floor(
+                        seconds / 60
+                    );
+
+
+                const remainingSeconds =
+                    Math.floor(
+                        seconds % 60
+                    );
+
+
+                return (
+                    minutes +
+                    ":" +
+                    String(
+                        remainingSeconds
+                    ).padStart(2, "0")
+                );
+
+            }
+
+
+            function updateTime() {
+
+                currentTime.textContent =
+                    formatTime(
+                        video.currentTime
+                    );
+
+
+                duration.textContent =
+                    formatTime(
+                        video.duration
+                    );
+
+
+                if (
+                    Number.isFinite(
+                        video.duration
+                    ) &&
+                    video.duration > 0
+                ) {
+
+                    const percentage =
+                        (
+                            video.currentTime /
+                            video.duration
+                        ) * 100;
+
+
+                    progress.value =
+                        percentage;
+
+
+                    progress.style
+                        .setProperty(
+                            "--progress",
+                            percentage + "%"
+                        );
+
+                }
+
+            }
+
+
+            function updatePlayButton() {
+
+                if (video.paused) {
+
+                    playButton.textContent =
+                        "▶";
+
+                    playButton.setAttribute(
+                        "aria-label",
+                        "Riproduci video"
+                    );
+
+                } else {
+
+                    playButton.textContent =
+                        "Ⅱ";
+
+                    playButton.setAttribute(
+                        "aria-label",
+                        "Metti in pausa"
+                    );
+
+                }
+
+            }
+
+
+            function showControls() {
+
+                container.classList.add(
+                    "controls-visible"
+                );
+
+
+                clearTimeout(
+                    hideControlsTimer
+                );
+
+
+                if (!video.paused) {
+
+                    hideControlsTimer =
+                        setTimeout(
+                            function() {
+
+                                container.classList
+                                    .remove(
+                                        "controls-visible"
+                                    );
+
+                            },
+                            3000
+                        );
+
+                }
+
+            }
+
+
+            function playVideo() {
+
+                video.play();
+
+                container.classList.add(
+                    "is-playing"
+                );
+
+                showControls();
+
+            }
+
+
+            function pauseVideo() {
+
+                video.pause();
+
+                container.classList.remove(
+                    "is-playing"
+                );
+
+                showControls();
+
+            }
+
+
+            centerPlay.addEventListener(
+                "click",
+                function(event) {
+
+                    event.stopPropagation();
+
+                    playVideo();
+
+                }
+            );
+
+
+            playButton.addEventListener(
+                "click",
+                function(event) {
+
+                    event.stopPropagation();
+
+
+                    if (video.paused) {
+
+                        playVideo();
+
+                    } else {
+
+                        pauseVideo();
+
+                    }
+
+                }
+            );
+
+
+            video.addEventListener(
+                "click",
+                function() {
+
+                    if (video.paused) {
+
+                        playVideo();
+
+                    } else {
+
+                        pauseVideo();
+
+                    }
+
+                }
+            );
+
+
+            video.addEventListener(
+                "play",
+                function() {
+
+                    container.classList.add(
+                        "is-playing"
+                    );
+
+                    updatePlayButton();
+
+                    showControls();
+
+                }
+            );
+
+
+            video.addEventListener(
+                "pause",
+                function() {
+
+                    container.classList.remove(
+                        "is-playing"
+                    );
+
+                    updatePlayButton();
+
+                    showControls();
+
+                }
+            );
+
+
+            video.addEventListener(
+                "ended",
+                function() {
+
+                    container.classList.remove(
+                        "is-playing"
+                    );
+
+                    container.classList.add(
+                        "controls-visible"
+                    );
+
+                    updatePlayButton();
+
+                    progress.value = 0;
+
+                    progress.style
+                        .setProperty(
+                            "--progress",
+                            "0%"
+                        );
+
+                }
+            );
+
+
+            video.addEventListener(
+                "timeupdate",
+                updateTime
+            );
+
+
+            video.addEventListener(
+                "loadedmetadata",
+                function() {
+
+                    duration.textContent =
+                        formatTime(
+                            video.duration
+                        );
+
+                    updateTime();
+
+                }
+            );
+
+
+            progress.addEventListener(
+                "input",
+                function() {
+
+                    if (
+                        Number.isFinite(
+                            video.duration
+                        )
+                    ) {
+
+                        const percentage =
+                            progress.value / 100;
+
+
+                        video.currentTime =
+                            video.duration *
+                            percentage;
+
+
+                        progress.style
+                            .setProperty(
+                                "--progress",
+                                progress.value + "%"
+                            );
+
+                    }
+
+                    showControls();
+
+                }
+            );
+
+
+            container.addEventListener(
+                "mousemove",
+                function() {
+
+                    showControls();
+
+                }
+            );
+
+
+            container.addEventListener(
+                "touchstart",
+                function() {
+
+                    showControls();
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+
+            fullscreenButton.addEventListener(
+                "click",
+                function(event) {
+
+                    event.stopPropagation();
+
+
+                    if (
+                        document.fullscreenElement
+                    ) {
+
+                        document.exitFullscreen();
+
+                    } else if (
+                        container.requestFullscreen
+                    ) {
+
+                        container.requestFullscreen();
+
+                    } else if (
+                        video.webkitEnterFullscreen
+                    ) {
+
+                        video.webkitEnterFullscreen();
+
+                    }
+
+                }
+            );
+
+
+            document.addEventListener(
+                "fullscreenchange",
+                function() {
+
+                    showControls();
+
+                }
+            );
+
+
+            updatePlayButton();
+
+            updateTime();
+
+        });
+
+</script>
+
+
+</body>
+
+</html>
